@@ -1,4 +1,6 @@
-from pydantic import BaseSettings
+from typing import List
+
+from pydantic import BaseSettings, AnyHttpUrl
 
 
 class Settings(BaseSettings):
@@ -12,6 +14,8 @@ class Settings(BaseSettings):
 
     MONGO_DATABASE_URI: str
     MONGO_DATABASE_NAME: str
+
+    BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = ["http://localhost:4200"]
 
     class Config:
         env_file = ".env"

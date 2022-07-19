@@ -1,5 +1,6 @@
 import uvicorn
 from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
 
 from backend.api.api_v1.api import api_router
 from backend.core.config import settings
@@ -12,6 +13,11 @@ app = FastAPI()
 async def start_db_client():
     app.db_client = client
     app.db_database = database
+
+
+if settings.BACKEND_CORS_ORIGINS:
+    app.add_middleware(CORSMiddleware, allow_origins=settings.BACKEND_CORS_ORIGINS, allow_credentials=True,
+                       allow_methods=["*"], allow_headers=["*"])
 
 
 @app.on_event("shutdown")
