@@ -1,0 +1,29 @@
+<form (ngSubmit)="dialogClose()" [formGroup]="form">
+  <mat-card-title>{{ data.title }}</mat-card-title>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Title</mat-label>
+    <input formControlName="title" matInput placeholder="Ex. Create Todo App" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Description</mat-label>
+    <textarea formControlName="description" matInput placeholder="Ex. Using Python and Angular to build..."
+              rows="10">
+    </textarea>
+  </mat-form-field>
+
+  <section>
+    <mat-checkbox class="example-margin" formControlName="completed">Completed</mat-checkbox>
+  </section>
+
+  <div class="mt-6 flex items-center justify-end gap-4">
+    <button class="h-12" mat-dialog-close mat-raised-button>CANCEL</button>
+    <button [mat-dialog-close]="{task: data.task, action: 'DELETE'}" class="h-12" color="warn" mat-raised-button>
+      DELETE
+    </button>
+    <button [mat-dialog-close]="{task, action: 'UPDATE'}" class="h-12" color="primary"
+            mat-raised-button>{{ data.action }}
+    </button>
+  </div>
+</form>

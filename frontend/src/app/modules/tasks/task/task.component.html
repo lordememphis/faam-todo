@@ -1,0 +1,18 @@
+<div class="w-full cursor-pointer">
+  <mat-card class="example-card">
+    <mat-card-title>{{ task.title }}</mat-card-title>
+    <mat-card-subtitle>
+      <mat-chip-list aria-label="Task status">
+        <ng-container *ngIf="task.completed else pending">
+          <mat-chip color="primary" selected>COMPLETED</mat-chip>
+        </ng-container>
+        <ng-template #pending>
+          <mat-chip>PENDING</mat-chip>
+        </ng-template>
+      </mat-chip-list>
+    </mat-card-subtitle>
+    <mat-card-content>
+      <p>{{ task.description }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

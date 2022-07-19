@@ -1,0 +1,13 @@
+<div class="fixed bottom-0 right-0 z-50 m-4">
+  <button (click)="createTask()" aria-label="Toggle add new task" color="accent" mat-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div class="m-4 h-fit columns-container">
+  <ng-container *ngFor="let task of tasks$ | async">
+    <div class="w-full">
+      <app-task (click)="updateTask(task)" [task]="task"></app-task>
+    </div>
+  </ng-container>
+</div>
