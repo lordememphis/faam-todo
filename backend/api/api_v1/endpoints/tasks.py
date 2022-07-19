@@ -18,6 +18,11 @@ async def get_tasks(request: Request, page: int = 0, size: int = 10):
     return await crud_task.get_multi(request, page, size)
 
 
+@router.get("/all", response_model=List[Task])
+async def get_all_tasks(request: Request):
+    return await crud_task.get_all(request)
+
+
 @router.get("/{task_id}", response_model=Task)
 async def get_task(request: Request, task_id: str):
     task = await crud_task.get_by_id(request, task_id)

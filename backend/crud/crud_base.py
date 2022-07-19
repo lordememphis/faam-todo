@@ -30,6 +30,9 @@ class CRUDBase(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
     def get_multi(self, request: Request, skip: int = 0, length: int = 10) -> List[ModelType]:
         return request.app.db_database[self.collection].find().skip(skip).to_list(length)
 
+    def get_all(self, request: Request) -> List[ModelType]:
+        return request.app.db_database[self.collection].find().to_list(None)
+
     async def update(self, request: Request, obj_id: str, obj_in: Any) -> ModelType | None:
         if not ObjectId(obj_id):
             return None
