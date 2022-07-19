@@ -5,5 +5,6 @@ from backend.db.database import Base
 
 class Task(Base):
     id: str = Field(...)
-    name: str = Field(...)
+    title: str = Field(...)
+    description: str = Field(...)
     completed: bool = False

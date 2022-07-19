@@ -7,7 +7,8 @@ from core.py_object_id import PyObjectId
 
 
 class TaskBase(BaseModel):
-    name: Optional[str]
+    title: Optional[str]
+    description: Optional[str]
     completed: Optional[bool]
 
     class Config:
@@ -17,7 +18,8 @@ class TaskBase(BaseModel):
 
 
 class TaskCreate(TaskBase):
-    name: str = Field(...)
+    title: str = Field(...)
+    description: str = Field(...)
     completed: bool = False
 
 
@@ -27,7 +29,8 @@ class TaskUpdate(TaskBase):
 
 class TaskInDBBase(TaskBase):
     id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
-    name: str
+    title: str
+    description: str
     completed: bool
 
 
